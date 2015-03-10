@@ -1,0 +1,21 @@
+{
+  "name": "pixiTest",
+  "version": "0.0.0",
+  "authors": [
+    "Matt Dumouchel"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "pixi.js": "~2.2.7",
+    "sammy": "~0.7.6",
+    "requirejs": "~2.1.15",
+    "jquery": "~2.1.3"
+  }
+}
