@@ -1,7 +1,8 @@
 define(["PIXI", "greenSock"], function(PIXI, greensock) {
 	function init(){
 	// create an new instance of a pixi stage
-        var stage = new PIXI.Stage(0x66FF99);
+        var interactive = true;
+        var stage = new PIXI.Stage(0x66FF99, interactive);
 
         // create a renderer instance.
         var renderer = PIXI.autoDetectRenderer(400, 300);
@@ -15,6 +16,24 @@ define(["PIXI", "greenSock"], function(PIXI, greensock) {
         var texture = PIXI.Texture.fromImage("useravatar.png");
         // create a new Sprite using the texture
         var bunny = new PIXI.Sprite(texture);
+        
+        //Building a button
+        var button = new PIXI.Sprite(texture);
+        console.log(button.interactive);
+        button.interactive = true
+        button.x = 24;
+        button.y = 24;
+        button.anchor.x = 0.5;
+        button.anchor.y = 0.5;
+        button.toggle = 1;
+        button.click = function() {
+            //Little bit of toggling and tweening..
+            var t1 = new TimelineMax({onUpdate:animate, onUpdateScope:stage});
+            t1.to(bunny, 2, {alpha:button.toggle * -1});
+            var t2 = new TimelineMax({onUpdate:animate, onUpdateScope:stage});
+            t2.to(button, 2, {rotation: 1.57 + (1.57 * button.toggle)})
+            button.toggle *= -1;
+        }
 
         // center the sprites anchor point
         bunny.anchor.x = 0.5;
@@ -26,9 +45,7 @@ define(["PIXI", "greenSock"], function(PIXI, greensock) {
         bunny.mass = 10;
 
         stage.addChild(bunny);
-
-        var t1 = new TimelineMax({onUpdate:animate, onUpdateScope:stage});
-        t1.to(bunny.position, 2, {x:400}); 
+        stage.addChild(button);
 
         function animate() {
 
