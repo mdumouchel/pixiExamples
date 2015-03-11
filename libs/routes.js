@@ -20,6 +20,11 @@ define(function () {
         {
             require(["libs/examples/factory/index"], initModule);
         });
+
+        self.get("/tweenGreensock", function ()
+        {
+            require(["libs/examples/tweenGreensock/index"], initModule);
+        });
     });
     app.run();
 });
