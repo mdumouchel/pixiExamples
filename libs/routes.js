@@ -25,6 +25,11 @@ define(function () {
         {
             require(["libs/examples/tweenGreensock/index"], initModule);
         });
+
+        self.get("/text", function ()
+        {
+            require(["libs/examples/text/index"], initModule);
+        });
     });
     app.run();
 });
